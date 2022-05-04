@@ -71,57 +71,13 @@ public class DocenteController {
 		return ResponseEntity.ok(lista);
 	}
 	
-	@GetMapping("/porDniNombre/{paramDni}/{paramNombre}")
-	@ResponseBody
-	public ResponseEntity<Map<String, Object>> listaDocentePorDniNombre(
-										@PathVariable("paramDni")String dni,
-										@PathVariable("paramNombre")String nombre) {
-		
-		Map<String, Object> salida = new HashMap<String, Object>();
-		try {
-			List<Docente> lista = docenteService .listaDocentePorDniNombre(dni, "%"+nombre+"%");
-			if(CollectionUtils.isEmpty(lista)){
-				salida.put("mensaje", "No existe elementos para la consulta");
-			}else {
-				salida.put("lista", lista);
-				salida.put("mensaje", "Se tiene " + lista.size() + " elementos");
-			}
-		} catch (Exception e) {
-			salida.put("mensaje", "Error : " + e.getMessage());
-		}
-		
-		return ResponseEntity.ok(salida);
-	}
-	
-	
-	@GetMapping("/porDniNombreConParametros")
-	@ResponseBody
-	public ResponseEntity<Map<String, Object>> listaPrDniNombreConParametros(
-			@RequestParam(value = "nombre", required = false, defaultValue = "") String nombre,
-			@RequestParam(value = "dni", required = false, defaultValue = "") String dni) {
-		
-		Map<String, Object> salida = new HashMap<String, Object>();
-		try {
-			List<Docente> lista = docenteService .listaDocentePorDniNombre(dni, "%"+nombre+"%");
-			if(CollectionUtils.isEmpty(lista)){
-				salida.put("mensaje", "No existe elementos para la consulta");
-			}else {
-				salida.put("lista", lista);
-				salida.put("mensaje", "Se tiene " + lista.size() + " elementos");
-			}
-		} catch (Exception e) {
-			salida.put("mensaje", "Error : " + e.getMessage());
-		}
-		
-		return ResponseEntity.ok(salida);
-	}
-	
+	//Métodos para la consulta del FrontEnd
 	@GetMapping("/porDniNombreUbigeoConParametros")
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> listaPrDniNombreUbigeoConParametros(
 			@RequestParam(value = "nombre", required = false, defaultValue = "") String nombre,
 			@RequestParam(value = "dni", required = false, defaultValue = "") String dni,
-			@RequestParam(value = "idUbigeo", required = false, defaultValue = "0") int idUbigeo) {
+			@RequestParam(value = "idUbigeo", required = false, defaultValue = "-1") int idUbigeo) {
 		
 		Map<String, Object> salida = new HashMap<String, Object>();
 		try {
@@ -141,8 +97,7 @@ public class DocenteController {
 	
 	@GetMapping("/porDniNombreUbigeoConJson")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> listaPrDniNombreUbigeoConParametros(
-							@RequestBody FiltroDocente filtro) {
+	public ResponseEntity<Map<String, Object>> listaPrDniNombreUbigeoConParametros(	@RequestBody FiltroDocente filtro) {
 		
 		Map<String, Object> salida = new HashMap<String, Object>();
 		try {

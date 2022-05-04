@@ -35,10 +35,6 @@ public class DocenteServiceImpl implements DocenteService {
 		return repository.findByNombreContaining(nombre);
 	}
 
-	@Override
-	public List<Docente> listaDocentePorDniNombre(String dni, String nombre) {
-		return repository.listaDocentePorDniNombre(dni, nombre);
-	}
 
 	@Override
 	public List<Docente> listaDocentePorDniNombreUbigeo(String dni, String nombre, int idUbigeo) {

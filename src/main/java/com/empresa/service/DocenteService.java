@@ -3,20 +3,11 @@ package com.empresa.service;
 import java.util.List;
 
 import com.empresa.entity.Docente;
-import com.empresa.entity.FiltroDocente;
 
 public interface DocenteService {
 
 	public abstract List<Docente> listaDocente();
-
 	public abstract Docente insertaActualizaDocente(Docente obj);
-
-	public abstract List<Docente> listaDocentePorDni(String dni);
+	public abstract List<Docente> listaDocentePorNombreDniUbigeo(String nombre, String dni, int idUbigeo, int estado);
 	
-	public abstract List<Docente> listaDocentePorNombre(String nombre);
-	
-
-	public abstract List<Docente> listaDocentePorDniNombreUbigeo(String dni,String nombre, int idUbigeo);
-	
-	public abstract List<Docente> listaPorFiltro(FiltroDocente filtro);
 }
